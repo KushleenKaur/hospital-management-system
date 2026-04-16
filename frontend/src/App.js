@@ -1,27 +1,26 @@
-import React, { useState } from "react";
-import Login from "./Login";
-import Dashboard from "./Dashboard";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import PatientDashboard from './pages/PatientDashboard';
+import BookAppointment from './pages/BookAppointment';
+import MyBookings from './pages/MyBookings';
+import DoctorDashboard from './pages/DoctorDashboard';
+import Login from './pages/Login';
 
 function App() {
-const [isLoggedIn, setIsLoggedIn] = useState(
-  localStorage.getItem("isLoggedIn") === "true"
-);
-  const [user, setUser] = useState(null);
-  
-
   return (
-    <div>
-      
-      {isLoggedIn ? (
-        <Dashboard setIsLoggedIn={setIsLoggedIn} user={user} />
-      ) : (
-        <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser} />
-      )}
-      <div className="footer">
-  <p>© 2026 Vishal Mega Hospital | Developed by Kushleen Kaur</p>
-</div>
-    </div>
-    
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/patient" element={<PatientDashboard />} />
+          <Route path="/book-appointment" element={<BookAppointment />} />
+          <Route path="/my-bookings" element={<MyBookings />} />
+          <Route path="/doctor" element={<DoctorDashboard />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 

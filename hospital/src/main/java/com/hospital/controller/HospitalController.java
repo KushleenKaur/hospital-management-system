@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hospital.model.Appointment;
 import com.hospital.model.Doctor;
 import com.hospital.model.Patient;
 import com.hospital.model.User;
-import com.hospital.repository.AppointmentRepository;
 import com.hospital.repository.DoctorRepository;
 import com.hospital.repository.PatientRepository;
 import com.hospital.repository.UserRepository;
@@ -27,8 +25,6 @@ public class HospitalController {
     @Autowired
     private PatientRepository patientRepo;
 
-    @Autowired
-    private AppointmentRepository appointmentRepo;
 
     @Autowired
     private UserRepository userRepo;
@@ -43,15 +39,7 @@ public class HospitalController {
         return patientRepo.findAll();
     }
 
-    @PostMapping("/appointment")
-    public Appointment book(@RequestBody Appointment a) {
-        return appointmentRepo.save(a);
-    }
 
-    @GetMapping("/appointments")
-    public List<Appointment> getAppointments() {
-        return appointmentRepo.findAll();
-    }
 
     @Autowired
     private DoctorRepository doctorRepo;
